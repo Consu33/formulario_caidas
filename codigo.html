@@ -13,11 +13,20 @@
         <form  action = "guardar.php"  method = "POST">
 
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="nombre completo" required>
+            <input type="text" id="nombre" name="nombre" placeholder="nombre" required>
+            <label for="nombre">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" placeholder="apellido" required>
+            <label for="nombre">Rut:</label>
+            <input type="text" id="rut" name="rut" placeholder="rut" required>
+            <label for="sexo_m">Sexo:</label>
+            <input type="radio" id="sexo_m" name="sexo" value="Hombre" required>
+            <label for="sexo_m">Masculino</label>
+            <input type="radio" id="sexo_f" name="sexo" value="Mujer" required>
+            <label for="sexo_f">Femenino</label>
+            <br>
+            <br>
             <label for="edad">Edad:</label>
             <input type="number" id="edad" name="edad" placeholder="edad" required>
-            <label for="sexo">Sexo:</label>
-            <input type="text" id="sexo" name="sexo" placeholder="sexo" required>
         
             <div class="input-group"> 
                 <br>
@@ -33,33 +42,33 @@
                 <label for="nombre">Hora caída:</label>
                 <input type="time" id="hora_caida" name="hora_caida"> 
                 <label for="nombre">Día caída:</label>
-                <input type="date" id="dia_caid" name="dia_caida"> 
+                <input type="date" id="dia_caida" name="dia_caida"> 
             </div>
         
             <h4>Lesión como consecuencia de caída:</h4>  
         
             <div class="consecuencia-caida">
-                <input type="checkbox" name="consecuencia[]" value="Abrasión/Erosión"> 
+                <input type="checkbox" name="lesiones[]" value="Abrasión/Erosión"> 
                 Abrasión/Erosión
-                <input type="checkbox" name="consecuencia[]" value="Fractura"> 
+                <input type="checkbox" name="lesiones[]" value="Fractura"> 
                 Fractura
-                <input type="checkbox" name="consecuencia[]" value="Esguince"> 
+                <input type="checkbox" name="lesiones[]" value="Esguince"> 
                 Esguince     
             </div>
             <div class="consecuencia-caida">
-                <input type="checkbox" name="consecuencia[]" value="Corte/Contusión"> 
+                <input type="checkbox" name="lesiones[]" value="Corte/Contusión"> 
                 Corte/Contusión 
-                <input type="checkbox" name="consecuencia[]" value="Hematoma"> 
+                <input type="checkbox" name="lesiones[]" value="Hematoma"> 
                 Hematoma
-                <input type="checkbox" name="consecuencia[]" value="Perdida de conciencia"> 
+                <input type="checkbox" name="lesiones[]" value="Perdida de conciencia"> 
                 Perdida de conciencia     
             </div>
             <div class="consecuencia-caida">
-                <input type="checkbox" name="consecuencia[]" value="Sin lesión"> 
+                <input type="checkbox" name="lesiones[]" value="Sin lesión"> 
                 Sin lesión
-                <input type="checkbox" name="consecuencia[]" value="Muerte"> 
+                <input type="checkbox" name="lesiones[]" value="Muerte"> 
                 Muerte
-                <input type="checkbox" name="consecuencia[]" value="Otras"> 
+                <input type="checkbox" name="lesiones[]" value="Otras"> 
                 Otras     
             </div>
         
@@ -76,119 +85,119 @@
             <h4>1 - Lugar: Marque una casilla correspondiente:</h4>
             <div class="Descripcion_caida">
                 
-                <input type="checkbox" name="checkbox[]" value="Habitación"> 
+                <input type="checkbox" name="descripcion[]" value="Habitación"> 
                 Habitación
-                <input type="checkbox" name="checkbox[]" value="Recinto Baño"> 
+                <input type="checkbox" name="descripcion[]" value="Recinto Baño"> 
                 Recinto Baño
-                <input type="checkbox" name="checkbox[]" value="Pasillo"> 
+                <input type="checkbox" name="descripcion[]" value="Pasillo"> 
                 Pasillo
-                <input type="checkbox" name="checkbox[]" value="Escalera "> 
+                <input type="checkbox" name="descripcion[]" value="Escalera "> 
                 Escalera               
             </div>
             
             <h4>2 - Equipo - Mobiliario: Marque una casilla que corresponda</h4>
-            <div class="Descripcion_caida2">        
-                <input type="checkbox" name="checkbox[]" value="Cama"> 
+            <div class="Descripcion_caida">        
+                <input type="checkbox" name="descripcion[]" value="Cama"> 
                 Cama
-                <input type="checkbox" name="checkbox[]" value="Camilla"> 
+                <input type="checkbox" name="descripcion[]" value="Camilla"> 
                 Camilla
-                <input type="checkbox" name="checkbox[]" value="Silla"> 
+                <input type="checkbox" name="descripcion[]" value="Silla"> 
                 Silla
-                <input type="checkbox" name="checkbox[]" value="Silla de Ruedas"> 
+                <input type="checkbox" name="descripcion[]" value="Silla de Ruedas"> 
                 Silla de Ruedas
             </div>
             
         
-            <div class="Descripcion_caida2"> 
-                <input type="checkbox" name="checkbox[]" value="Existe Barandas"> 
+            <div class="Descripcion_caida"> 
+                <input type="checkbox" name="descripcion[]" value="Existe Barandas"> 
                 Existe Barandas
-                <input type="checkbox" name="checkbox[]" value="Barandas Arriba"> 
+                <input type="checkbox" name="descripcion[]" value="Barandas Arriba"> 
                 Barandas Arriba
-                <input type="checkbox" name="checkbox[]" value="Frenos Puestos"> 
+                <input type="checkbox" name="descripcion[]" value="Frenos Puestos"> 
                 Frenos Puestos 
             </div>
         
-            <div class="Descripcion_caida2"> 
-                <input type="checkbox" name="checkbox[]" value="Taza WC"> 
+            <div class="Descripcion_caida"> 
+                <input type="checkbox" name="descripcion[]" value="Taza WC"> 
                 Taza WC
-                <input type="checkbox" name="checkbox[]" value="Ducha"> 
+                <input type="checkbox" name="descripcion[]" value="Ducha"> 
                 Ducha
-                <input type="checkbox" name="checkbox[]" value="Barras Apoyo"> 
+                <input type="checkbox" name="descripcion[]" value="Barras Apoyo"> 
                 Barras Apoyo
             </div>
             <br>
-            <div class="Descripcion_caida2">
+            <div class="Descripcion_caida">
                 Otros?: 
                 <input type="text" size="93"  id="otro_equipo" name = "otro_equipo" placeholder="Describa otro equipo"> 
                         
                 <h4>3 - Entorno: Marque una casilla que corresponda</h4>
                 Paciente esta solo al momento de caída?
-                <input type="checkbox" name="checkbox[]" value="Paciente solo">                        
+                <input type="checkbox" name="entorno[]" value="Paciente solo">                        
                     
                 Acompañado 
-                <input type="checkbox" name="checkbox[]" value="Acompañado ">
+                <input type="checkbox" name="entorno[]" value="Acompañado ">
             </div>
         
-            <div class="Descripcion_caida3">  
+            <div class="Descripcion_caida">  
                 Timbre llamada funcionando:
-                <input type="checkbox" name="checkbox[]" value="Sí"> 
+                <input type="checkbox" name="entorno[]" value="Sí"> 
                 Sí
-                <input type="checkbox" name="checkbox[]" value="No"> 
+                <input type="checkbox" name="entorno[]" value="No"> 
                 No
             </div>
         
-            <div class="Descripcion_caida3">  
+            <div class="Descripcion_caida">  
                 Iluminación Suficiente:
-                <input type="checkbox" name="checkbox[]" value="Sí"> 
+                <input type="checkbox" name="entorno[]" value="Sí"> 
                 Sí
-                <input type="checkbox" name="checkbox[]" value="No"> 
+                <input type="checkbox" name="entorno[]" value="No"> 
                 No
             </div>
         
-            <div class="Descripcion_caida3">  
+            <div class="Descripcion_caida">  
                 Espacio Libre de Riesgo en sitio de caída:
-                <input type="checkbox" name="checkbox[]" value="Sí"> 
+                <input type="checkbox" name="entorno[]" value="Sí"> 
                 Sí
-                <input type="checkbox" name="checkbox[]" value="No"> 
+                <input type="checkbox" name="entorno[]" value="No"> 
                 No
             </div>
         
-            <div class="Descripcion_caida4">
+            <div class="Descripcion_caida">
                 <h4>4 - Actividad Asociada: Marque una casilla que corresponda</h4>
                 Deambulando
-                <input type="checkbox" name="checkbox[]" value="Deambulando"> 
+                <input type="checkbox" name="actividad[]" value="Deambulando"> 
                 Cambio de posición
-                <input type="checkbox" name="checkbox[]" value="Cambio de posición"> 
+                <input type="checkbox" name="actividad[]" value="Cambio de posición"> 
                 Traslado a silla/cama
-                <input type="checkbox" name="checkbox[]" value=" Traslado a silla/cama"> 
+                <input type="checkbox" name="actividad[]" value=" Traslado a silla/cama"> 
             </div>
         
-            <div class="Descripcion_caida4">
+            <div class="Descripcion_caida">
                 Eliminación - WC
-                <input type="checkbox" name="checkbox[]" value="Eliminación - WC"> 
+                <input type="checkbox" name="actividad[]" value="Eliminación - WC"> 
                 Aseo
-                <input type="checkbox" name="checkbox[]" value="Aseo"> 
+                <input type="checkbox" name="actividad[]" value="Aseo"> 
                 Alcanzando Objetos
-                <input type="checkbox" name="checkbox[]" value="Alcanzando Objetos"> 
+                <input type="checkbox" name="actividad[]" value="Alcanzando Objetos"> 
             </div>
         
             <div class="Medicamentos">
                 <h4>Uso Medicamentos: Marque todos los que correspondan</h4>
                 Opiáceos
-                <input type="checkbox" name="checkbox[]" value="Opiáceos"> 
+                <input type="checkbox" name="medicamentos[]" value="Opiáceos"> 
                 Antidepresivo
-                <input type="checkbox" name="checkbox[]" value="Antidepresivo"> 
+                <input type="checkbox" name="medicamentos[]" value="Antidepresivo"> 
                 Sedantes
-                <input type="checkbox" name="checkbox[]" value="Sedantes"> 
+                <input type="checkbox" name="medicamentos[]" value="Sedantes"> 
             </div>
         
             <div class="Medicamentos">
                 Tranquilizantes
-                <input type="checkbox" name="checkbox[]" value="Tranquilizantes"> 
+                <input type="checkbox" name="medicamentos[]" value="Tranquilizantes"> 
                 Hipotensores
-                <input type="checkbox" name="checkbox[]" value="Hipotensores"> 
+                <input type="checkbox" name="medicamentos[]" value="Hipotensores"> 
                 Diuréticos
-                <input type="checkbox" name="checkbox[]" value="Diuréticos"> 
+                <input type="checkbox" name="medicamentos[]" value="Diuréticos"> 
             </div>
         
             <h4>Estado del Paciente Previo a la Caída:</h4>
@@ -196,51 +205,51 @@
                 
             <div class="Estado_paciente">
                 Nunca
-                <input type="checkbox" name="checkbox[]" value="Nunca"> 
+                <input type="checkbox" name="estado_paciente[]" value="Nunca"> 
                 Si, en el domicilio
-                <input type="checkbox" name="checkbox[]" value="Si, en el domicilio">
+                <input type="checkbox" name="estado_paciente[]" value="Si, en el domicilio">
                 Si, en el Hospital
-                <input type="checkbox" name="checkbox[]" value="Si, en el Hospital">
+                <input type="checkbox" name="estado_paciente[]" value="Si, en el Hospital">
         
                 <h4>2. Estado de Conciencia: marque una casilla que corresponda</h4>
                 Alerta
-                <input type="checkbox" name="checkbox[]" value="Alerta"> 
+                <input type="checkbox" name="estado_conciencia[]" value="Alerta"> 
                 Confuso
-                <input type="checkbox" name="checkbox[]" value="Confuso">
+                <input type="checkbox" name="estado_conciencia[]" value="Confuso">
                 Agitado
-                <input type="checkbox" name="checkbox[]" value="Agitado">
+                <input type="checkbox" name="estado_conciencia[]" value="Agitado">
                 Inconsciente
-                <input type="checkbox" name="checkbox[]" value="Inconsciente">
+                <input type="checkbox" name="estado_conciencia[]" value="Inconsciente">
             
                 <h4>3. Alteraciones o déficit Sensorial: marque todas las casillas que correspondan</h4>
                 Ninguna
-                <input type="checkbox" name="checkbox[]" value="Ninguna"> 
+                <input type="checkbox" name="alteraciones[]" value="Ninguna"> 
                 Audición disminuida
-                <input type="checkbox" name="checkbox[]" value="Audición disminuida">
+                <input type="checkbox" name="alteraciones[]" value="Audición disminuida">
                 Visión disminuida
-                <input type="checkbox" name="checkbox[]" value="Visión disminuida">
+                <input type="checkbox" name="alteraciones[]" value="Visión disminuida">
                 Alt. Equilibrio
-                <input type="checkbox" name="checkbox[]" value="Alt. Equilibrio">
+                <input type="checkbox" name="alteraciones[]" value="Alt. Equilibrio">
         
                 <h4>4. Movilidad: marque una casilla que corresponda</h4>
                 Completa
-                <input type="checkbox" name="checkbox[]" value="Completa"> 
+                <input type="checkbox" name="movilidad[]" value="Completa"> 
                 Usa ayudas técnicas
-                <input type="checkbox" name="checkbox[]" value="Usa ayudas técnicas">
+                <input type="checkbox" name="movilidad[]" value="Usa ayudas técnicas">
                 Restringida
-                <input type="checkbox" name="checkbox[]" value="Restringida">
+                <input type="checkbox" name="movilidad[]" value="Restringida">
                 En cama
-                <input type="checkbox" name="checkbox[]" value="En cama">
+                <input type="checkbox" name="movilidad[]" value="En cama">
         
                 <h4>5. Paso o Caminata: marque todas las casillas que correspondan</h4>
                 Estable
-                <input type="checkbox" name="checkbox[]" value="Estable"> 
+                <input type="checkbox" name="paso_o_caminata[]" value="Estable"> 
                 Con Temblor
-                <input type="checkbox" name="checkbox[]" value="Con Temblor">
+                <input type="checkbox" name="paso_o_caminata[]" value="Con Temblor">
                 Inestable
-                <input type="checkbox" name="checkbox[]" value="Inestable">
+                <input type="checkbox" name="paso_o_caminata[]" value="Inestable">
                 Dif. en Transferencia
-                <input type="checkbox" name="checkbox[]" value="Dif. en Transferencia">
+                <input type="checkbox" name="paso_o_caminata[]" value="Dif. en Transferencia">
             </div>
             
             <div class="Observación">
