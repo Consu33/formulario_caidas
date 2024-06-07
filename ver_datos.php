@@ -171,11 +171,17 @@ $conexion->close();
         <p>No se encontraron datos de las observaciones.</p>
     <?php endif; ?>
 
-    
+    <?php
+
+    /*header("Location: enviar_correo.php?id=$paciente_id");
+    exit();*/
+    ?>       
 </body>
 </html>
 
+        
 <br>
-    <button><a href="formulario.html">Guardar formulario</a></button>
+    <button><a href="enviar_correo.php">Guardar formulario</a></button>
 
 
+    
