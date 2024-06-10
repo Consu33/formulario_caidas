@@ -11,7 +11,6 @@ if ($conexion->connect_error) {
     die("Conexión fallida: " . $conexion->connect_error);
 }
 
-
 //Declaracion de variables de tablas
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
@@ -24,8 +23,7 @@ $consulta_paciente = $conexion->prepare("INSERT INTO paciente (nombre, apellido,
 $consulta_paciente->bind_param("ssssi", $nombre, $apellido, $rut, $sexo, $edad);
 
 if ($consulta_paciente->execute()) {
-    $paciente_id = $consulta_paciente->insert_id; 
-    
+    $paciente_id = $consulta_paciente->insert_id;     
 
     echo "el id del paciente creado es: " . $consulta_paciente->insert_id;
 } else {
@@ -35,7 +33,6 @@ if ($consulta_paciente->execute()) {
 
 $consulta_paciente->close();
 echo "el id del paciente recien creado es: " . $paciente_id;
-
 
 
 //variables tabla diagnostico
@@ -69,15 +66,12 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     
 //consulta tabla lesiones
 $consulta_lesiones = $conexion->prepare('INSERT INTO lesiones (paciente_id, lesiones) VALUES (?, ?)');
+$consulta_lesiones->bind_param("is", $paciente_id, $lesiones);
 
 if ($consulta_lesiones === false) {
     die("Error al preparar la declaración: " . $conexion->error);
 }
 
-
-$consulta_lesiones->bind_param("is", $paciente_id, $lesiones);
-
-//Ejecutar 
 if ($consulta_lesiones->execute()) {
     echo "";
 } else {
@@ -122,14 +116,12 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $consulta_sitio = $conexion->prepare('INSERT INTO sitio (paciente_id, sitio_caida) VALUES (?, ?)');
+$consulta_sitio->bind_param("is", $paciente_id, $sitio);
 
 if ($consulta_sitio === false) {
     die("Error al preparar la declaración: " . $conexion->error);
 }
 
-$consulta_sitio->bind_param("is", $paciente_id, $sitio);
-
-//Ejecutar 
 if ($consulta_sitio->execute()) {
     echo "";
 } else {
@@ -149,14 +141,12 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $consulta_equipo = $conexion->prepare("INSERT INTO equipo (paciente_id, equipo_mobiliario, otro_equipo) VALUES (?, ?, ?)");
+$consulta_equipo->bind_param("iss", $paciente_id, $equipo, $otro);
 
 if ($consulta_equipo === false) {
     die("Error al preparar la declaración: " . $conexion->error);
 }
 
-$consulta_equipo->bind_param("iss", $paciente_id, $equipo, $otro);
-
-//ejecutar
 if ($consulta_equipo->execute()) {
     echo "";
 } else {
@@ -174,14 +164,12 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $consulta_entorno = $conexion->prepare("INSERT INTO entorno (paciente_id, entorno_paciente) VALUES (?, ?)");
+$consulta_entorno->bind_param("is", $paciente_id, $entorno);
 
 if ($consulta_entorno === false) {
     die("Error al preparar la declaración: " . $conexion->error);
 }
 
-$consulta_entorno->bind_param("is", $paciente_id, $entorno);
-
-//ejecutar
 if ($consulta_entorno->execute()) {
     echo "";
 } else {
@@ -199,14 +187,12 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $consulta_actividad = $conexion->prepare("INSERT INTO actividad (paciente_id, actividad_asociada) VALUES (?, ?)");
+$consulta_actividad->bind_param("is", $paciente_id, $actividad);
 
 if ($consulta_entorno === false) {
     die("Error al preparar la declaración: " . $conexion->error);
 }
 
-$consulta_actividad->bind_param("is", $paciente_id, $actividad);
-
-//ejecutar
 if ($consulta_actividad->execute()) {
     echo "";
 } else {
@@ -224,14 +210,12 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $consulta_medicamentos = $conexion->prepare("INSERT INTO medicamentos (paciente_id, medicamentos_paciente) VALUES (?, ?)");
+$consulta_medicamentos->bind_param("is", $paciente_id, $medicamentos);
 
 if ($consulta_medicamentos === false) {
     die("Error al preparar la declaración: " . $conexion->error);
 }
 
-$consulta_medicamentos->bind_param("is", $paciente_id, $medicamentos);
-
-//ejecutar
 if ($consulta_medicamentos->execute()) {
     echo "";
 } else {
@@ -249,14 +233,12 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 $consulta_estado_paciente = $conexion->prepare("INSERT INTO estado (paciente_id, estado_paciente) VALUES (?, ?)");
+$consulta_estado_paciente->bind_param("is", $paciente_id, $estado_paciente);
 
 if ($consulta_estado_paciente === false) {
     die("Error al preparar la declaración: " . $conexion->error);
 }
 
-$consulta_estado_paciente->bind_param("is", $paciente_id, $estado_paciente);
-
-//ejecutar
 if ($consulta_estado_paciente->execute()) {
     echo "";
 } else {
@@ -283,6 +265,8 @@ $consulta_obersevaciones->close();
 $conexion->close();
 header("Location: ver_datos.php?id=$paciente_id");
 exit();
+
+require 'enviar_correo.php';
 
 /*print_r($_POST);*/
 
