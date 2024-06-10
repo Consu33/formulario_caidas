@@ -28,15 +28,11 @@ $consulta_paciente->bind_param("ssssi", $nombre, $apellido, $rut, $sexo, $edad);
 
 if ($consulta_paciente->execute()) {
     $paciente_id = $consulta_paciente->insert_id;     
-
-    echo "el id del paciente creado es: " . $consulta_paciente->insert_id;
 } else {
     echo "Error al insertar datos: " . $consulta_paciente->error;
 }
 
 $consulta_paciente->close();
-echo "el id del paciente recien creado es: " . $paciente_id;
-
 
 //variables tabla diagnostico
 $diagnostico_ingreso = $_POST['diagnostico_ingreso'];
@@ -279,11 +275,10 @@ use PHPMailer\PHPMailer\SMTP;
 /*require 'vendor/autoload.php';*/
 
 require_once "vendor/autoload.php";
-// include("guardar.php");
 $mail = new PHPMailer;
 
-echo "enviar correo";
-echo "<br> $nombre";
+/*echo "enviar correo";
+echo "<br> $nombre";*/
 
  // Convertir arreglos a cadenas separadas por comas
 $lesiones_str = is_array($lesiones) ? implode(', ', $lesiones) : $lesiones;
@@ -297,7 +292,7 @@ $estado_paciente_str = is_array($estado_paciente) ? implode(', ', $estado_pacien
 
 try {
     // Configuración del servidor de correo
-    $mail->SMTPDebug = 1;
+    $mail->SMTPDebug = 0;
     $mail->isSMTP();
     $mail->Host = 'smtp.office365.com';
     $mail->SMTPAuth = true;
