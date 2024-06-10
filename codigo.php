@@ -7,9 +7,13 @@ $baseDeDatos = "formulariocaida";
 
 $conexion = new mysqli($servidor, $usuario, $clave, $baseDeDatos);
 
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
+if ($conexion->connect_errno) {
+    die("Conexión fallida: " . $conexion->connect_errno);
 }
+
+// echo "<pre>";
+// print_r($_POST);
+// echo "</pre>";
 
 //Declaracion de variables de tablas
 $nombre = $_POST['nombre'];
@@ -29,7 +33,6 @@ if ($consulta_paciente->execute()) {
 } else {
     echo "Error al insertar datos: " . $consulta_paciente->error;
 }
-
 
 $consulta_paciente->close();
 echo "el id del paciente recien creado es: " . $paciente_id;
@@ -263,11 +266,84 @@ $consulta_obersevaciones->close();
 
 
 $conexion->close();
-header("Location: ver_datos.php?id=$paciente_id");
-exit();
 
-require 'enviar_correo.php';
-
-/*print_r($_POST);*/
+// INCLUDE ENVIO DE CORREO -- TODO: SECCIONAR CODIGO EN OTROS ARCHIVOS
 
 ?>   
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+/*require 'vendor/autoload.php';*/
+
+require_once "vendor/autoload.php";
+// include("guardar.php");
+$mail = new PHPMailer;
+
+echo "enviar correo";
+echo "<br> $nombre";
+
+ // Convertir arreglos a cadenas separadas por comas
+$lesiones_str = is_array($lesiones) ? implode(', ', $lesiones) : $lesiones;
+$sitio_str = is_array($sitio) ? implode(', ', $sitio) : $sitio;
+$equipo_str = is_array($equipo) ? implode(', ', $equipo) : $equipo;
+$entorno_str = is_array($entorno) ? implode(', ', $entorno) : $entorno;
+$actividad_str = is_array($actividad) ? implode(', ', $actividad) : $actividad;
+$medicamentos_str = is_array($medicamentos) ? implode(', ', $medicamentos) : $medicamentos;
+$estado_paciente_str = is_array($estado_paciente) ? implode(', ', $estado_paciente) : $estado_paciente;
+
+
+try {
+    // Configuración del servidor de correo
+    $mail->SMTPDebug = 1;
+    $mail->isSMTP();
+    $mail->Host = 'smtp.office365.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'manuel.arrano@redsalud.gob.cl';
+    $mail->Password = 'Man.2022';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    $mail->setFrom('manuel.arrano@redsalud.gob.cl');
+    $mail->addAddress('manuel.arrano@redsalud.gob.cl', 'manuel');
+
+    // Contenido del correo
+    $mail->isHTML(true);
+    $mail->CharSet = "UTF-8";
+    $mail->Subject = "Formulario de caidas";
+    $mail->Body = "Datos de paciente <br>";
+    $mail->Body .= "Nombre: $nombre<br>"; 
+    $mail->Body .= "Apellido: $apellido<br>";
+    $mail->Body .= "Rut: $rut<br>";
+    $mail->Body .= "Sexo: $sexo<br>";
+    $mail->Body .= "Edad: $edad<br>";
+    $mail->Body .= "Diagnostico: $diagnostico_ingreso<br>";
+    $mail->Body .= "Servicio clinico: $servicio_clinico<br>";
+    $mail->Body .= "Hora caida: $hora_caida<br>";
+    $mail->Body .= "Día caida: $dia_caida<br>";
+    $mail->Body .= "Sala: $sala<br>";
+    $mail->Body .= "Lesiones: $lesiones_str<br>";
+    $mail->Body .= "Ubicación lesión: $ubicacion_lesion<br>";
+    $mail->Body .= "Descripción caida: $descripcion_caida<br>";
+    $mail->Body .= "Sitio: $sitio_str<br>";
+    $mail->Body .= "Equipo: $equipo_str<br>";
+    $mail->Body .= "Otro: $otro<br>";
+    $mail->Body .= "Entorno: $entorno_str<br>";
+    $mail->Body .= "Actividad: $actividad_str<br>";
+    $mail->Body .= "Medicamentos: $medicamentos_str<br>";
+    $mail->Body .= "Estado paciente: $estado_paciente_str<br>";
+    $mail->Body .= "Observaciones: $observaciones<br>";
+    
+
+    $mail->send();
+    echo 'Correo enviado';
+
+} catch (Exception $e) {
+    echo 'Mensaje: ' . $mail->ErrorInfo;
+}
+
+?>
+<br>
+<button><a href="index.html">Generar otro formulario</a></button>
