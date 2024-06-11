@@ -18,13 +18,12 @@ if ($conexion->connect_errno) {
 //Declaracion de variables de tablas
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
-$rut = $_POST['rut'];
 $sexo = $_POST['sexo']; // "Hombre o Mujer"
 $edad = $_POST['edad'];
 
 //consulta tabla paciente
-$consulta_paciente = $conexion->prepare("INSERT INTO paciente (nombre, apellido, rut, sexo, edad) VALUES (?, ?, ?, ?, ?)");
-$consulta_paciente->bind_param("ssssi", $nombre, $apellido, $rut, $sexo, $edad);
+$consulta_paciente = $conexion->prepare("INSERT INTO paciente (nombre, apellido, sexo, edad) VALUES (?, ?, ?, ?)");
+$consulta_paciente->bind_param("sssi", $nombre, $apellido, $sexo, $edad);
 
 if ($consulta_paciente->execute()) {
     $paciente_id = $consulta_paciente->insert_id;     
@@ -311,7 +310,7 @@ try {
     $mail->Body = "Datos de paciente <br>";
     $mail->Body .= "Nombre: $nombre<br>"; 
     $mail->Body .= "Apellido: $apellido<br>";
-    $mail->Body .= "Rut: $rut<br>";
+    /*$mail->Body .= "Rut: $rut<br>";*/
     $mail->Body .= "Sexo: $sexo<br>";
     $mail->Body .= "Edad: $edad<br>";
     $mail->Body .= "Diagnostico: $diagnostico_ingreso<br>";
